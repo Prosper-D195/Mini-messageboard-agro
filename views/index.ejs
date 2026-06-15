@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    /* Petit style rapide aux couleurs tropicales/agricoles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f5;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      background-color: #2e6f40;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 { margin: 0; font-size: 24px; }
+    .btn-new {
+      background-color: #f39c12;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .btn-new:hover { background-color: #e67e22; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-left: 5px solid #2e6f40;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .card .meta {
+      font-size: 0.85em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .card .author { font-weight: bold; color: #2c3e50; }
+    .card .text { margin-bottom: 15px; line-height: 1.4; }
+    .btn-open {
+      display: inline-block;
+      color: #2e6f40;
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    .btn-open:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><%= title %></h1>
+    <a href="/new" class="btn-new">+ Nouvelle Note</a>
+  </header>
+
+  <main class="board">
+    <% if (messages.length === 0) { %>
+      <p>Aucune note de terrain enregistrée pour le moment.</p>
+    <% } else { %>
+      <% messages.forEach(msg => { %>
+        <div class="card">
+          <div class="meta">
+            Par <span class="author"><%= msg.user %></span><br>
+            Le <%= msg.added.toLocaleString('fr-FR') %>
+          </div>
+          <p class="text"><%= msg.text %></p>
+          <a href="/message/<%= msg.id %>" class="btn-open">Ouvrir la note →</a>
+        </div>
+      <% }) %>
+    <% } %>
+  </main>
+
+</body>
+</html>

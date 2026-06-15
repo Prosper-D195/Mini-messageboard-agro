@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter une Note de Terrain</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7f5;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 500px;
+      background: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-top: 5px solid #f39c12;
+    }
+    h2 { color: #2e6f40; margin-top: 0; }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    textarea { height: 120px; resize: vertical; }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-submit {
+      background-color: #2e6f40;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    .btn-submit:hover { background-color: #21512e; }
+    .btn-cancel {
+      color: #7f8c8d;
+      text-decoration: none;
+    }
+    .btn-cancel:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Nouvelle observation de terrain</h2>
+    
+    <form method="POST" action="/new">
+      
+      <div class="form-group">
+        <label for="messageUser">Auteur / Poste de contrôle :</label>
+        <input type="text" id="messageUser" name="messageUser" placeholder="Ex: Technicien Secteur Nord" required>
+      </div>
+
+      <div class="form-group">
+        <label for="messageText">Rapport / Observation :</label>
+        <textarea id="messageText" name="messageText" placeholder="Décrivez la situation sur le terrain..." required></textarea>
+      </div>
+
+      <div class="actions">
+        <a href="/" class="btn-cancel">Annuler</a>
+        <button type="submit" class="btn-submit">Publier la note</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>
